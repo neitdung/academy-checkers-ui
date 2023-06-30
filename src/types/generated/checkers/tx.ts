@@ -2,7 +2,7 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = "b9lab.checkers.checkers";
+export const protobufPackage = "alice.checkers.checkers";
 
 export interface MsgCreateGame {
   creator: string;
@@ -53,7 +53,7 @@ export const MsgCreateGame = {
       writer.uint32(32).uint64(message.wager);
     }
     if (message.denom !== "") {
-      writer.uint32(42).string(message.denom);
+      writer.uint32(98).string(message.denom);
     }
     return writer;
   },
@@ -77,7 +77,7 @@ export const MsgCreateGame = {
         case 4:
           message.wager = reader.uint64() as Long;
           break;
-        case 5:
+        case 12:
           message.denom = reader.string();
           break;
         default:
@@ -395,7 +395,7 @@ export class MsgClientImpl implements Msg {
   CreateGame(request: MsgCreateGame): Promise<MsgCreateGameResponse> {
     const data = MsgCreateGame.encode(request).finish();
     const promise = this.rpc.request(
-      "b9lab.checkers.checkers.Msg",
+      "alice.checkers.checkers.Msg",
       "CreateGame",
       data
     );
@@ -407,7 +407,7 @@ export class MsgClientImpl implements Msg {
   PlayMove(request: MsgPlayMove): Promise<MsgPlayMoveResponse> {
     const data = MsgPlayMove.encode(request).finish();
     const promise = this.rpc.request(
-      "b9lab.checkers.checkers.Msg",
+      "alice.checkers.checkers.Msg",
       "PlayMove",
       data
     );
